@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Thanh toán</title>
+</head>
+<body>
+    <header>
+        <h1>Thanh toán</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Trang chủ</a>
+            <a href="{{ url_for('products') }}">Sản phẩm</a>
+            <a href="{{ url_for('cart') }}">Giỏ hàng</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <form action="{{ url_for('checkout') }}" method="POST">
+            <label for="customer_name">Tên khách hàng:</label>
+            <input type="text" id="customer_name" name="customer_name" required>
+            
+            <label for="total_price">Tổng tiền:</label>
+            <input type="text" id="total_price" name="total_price" value="{{ total_price }}" readonly>
+            
+            <button type="submit">Thanh toán</button>
+        </form>
+    </div>
+</body>
+</html>

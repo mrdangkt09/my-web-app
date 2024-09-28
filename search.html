@@ -1,0 +1,8 @@
+<h2>Kết quả tìm kiếm</h2>
+<ul>
+    {% for result in search_results %}
+        <li>{{ result.name }}</li>
+    {% else %}
+        <li>Không tìm thấy kết quả.</li>
+    {% endfor %}
+</ul>

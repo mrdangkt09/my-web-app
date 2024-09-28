@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Giỏ hàng của bạn</title>
+</head>
+<body>
+    <header>
+        <h1>Giỏ hàng của bạn</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Trang chủ</a>
+            <a href="{{ url_for('products') }}">Sản phẩm</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% if products %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Tổng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td>{{ product.name }}</td>
+                            <td>{{ session.cart[loop.index0].quantity }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.price * session.cart[loop.index0].quantity }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p>Tổng tiền: {{ total_price }}</p>
+            <a href="{{ url_for('checkout') }}" class="btn">Thanh toán</a>
+        {% else %}
+            <p>Giỏ hàng của bạn đang trống.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

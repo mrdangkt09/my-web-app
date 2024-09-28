@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Quản lý Hóa đơn</h2>
+
+<form method="POST">
+    <input type="text" name="customer_name" placeholder="Tên khách hàng" required>
+    <input type="number" name="total_price" placeholder="Tổng giá" required>
+    <button type="submit">Tạo hóa đơn</button>
+</form>
+
+<h3>Danh sách Hóa đơn</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Tên khách hàng</th>
+            <th>Tổng giá</th>
+            <th>Ngày</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in invoices %}
+        <tr>
+            <td>{{ invoice.customer_name }}</td>
+            <td>{{ invoice.total_price }}</td>
+            <td>{{ invoice.date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

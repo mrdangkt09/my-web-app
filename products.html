@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Danh sách sản phẩm</h2>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash">{{ messages[0] }}</div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Tên sản phẩm" required>
+        <input type="text" name="category" placeholder="Danh mục" required>
+        <input type="number" name="price" placeholder="Giá" required>
+        <input type="number" name="quantity" placeholder="Số lượng" required>
+        <button type="submit">Thêm sản phẩm</button>
+    </form>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Product Image"> <!-- Thay thế bằng ảnh sản phẩm thực tế -->
+            <h3>{{ product.name }}</h3>
+            <p>Danh mục: {{ product.category }}</p>
+            <p>Giá: {{ product.price }} VNĐ</p>
+            <p>Số lượng: {{ product.quantity }}</p>
+            <a href="#" class="button">Xem chi tiết</a> <!-- Thêm liên kết đến chi tiết sản phẩm nếu cần -->
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<form method="GET" class="search-form">
+    <input type="text" name="search" placeholder="Tìm kiếm sản phẩm" required>
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <img src="https://via.placeholder.com/150" alt="Product Image">
+        <h3>{{ product.name }}</h3>
+        <p>Danh mục: {{ product.category }}</p>
+        <p>Giá: {{ product.price }} VNĐ</p>
+        <p>Số lượng: {{ product.quantity }}</p>
+        <a href="#" class="button">Xem chi tiết</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
